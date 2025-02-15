@@ -4,23 +4,21 @@ import {useRef} from 'react'
 import './App.css'
 
 function App() {
-  const cambio = 23.10
   const refValor = useRef()
+  let i_img = 0
 
   const incrementar = e => {
     const tag = e.target
-    tag.innerText = Number(tag.innerText) + 1
+    let i = Number(tag.innerText) + 1
+    if (i > 9) {
+      i = 0
+      tag.classList.remove('rojo')
+    } else if (i > 7)
+      tag.classList.add('rojo')
+    // console.dir(tag) // Muestra las propiedades del elemento
+    tag.innerText = i
   }
 
-  const convertir = () => {
-    refValor.current.innerText *= cambio
-  }
-
-  const inputCambio = e => {
-      refValor.current.innerText = e.target.value
-  }
-
-  let i_img = 0
   const cambiarImagen = e => {
     let img
     switch (i_img) {
@@ -40,9 +38,9 @@ function App() {
     <h1>Eventos</h1>
     <img src={img_0} onClick={cambiarImagen} />
     <p ref={refValor} className="contador" onClick={incrementar}>0</p>
-    <button onClick={convertir}>Incrementar</button>
+    <button>Incrementar</button>
     <br/>
-    <input onChange={inputCambio}/>
+    <input/>
   </>
 }
 

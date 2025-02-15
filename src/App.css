@@ -6,3 +6,7 @@ body {
 .contador {
   user-select: none;
 }
+
+.rojo {
+  background-color: red;
+}
